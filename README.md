@@ -11,6 +11,12 @@ For now, only GMGui is available as I am currently working on a Gui for the Easy
 
 <br> 
 
+# Planned/Future Features
++ Teleport Player to GM function
++ Auto Terrain Levelling
+
+<br>
+
 # Installation
 
 1. Unpack the folder GMGui to "%GameDirectory%/scripts/"
