@@ -11,9 +11,9 @@
 // where I will be able to make the change globally for everyone, don't worry, 
 // I will credit your edits if I choose to use them!
 
-if (!$pVersion)
+if (!$pGMVersion)
 {
-    pGMGuiWindowCtrl.text = "Phoenix's GM Tools::" @ $pVersion;
+    pGMGuiWindowCtrl.text = "Phoenix's GM Tools::" @ $pGMVersion;
 }
 
 // Toggle Window

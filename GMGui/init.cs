@@ -1,4 +1,4 @@
-$pVersion = "v2.1.0";
+$pGMVersion = "v2.3.1";
 
 exec("./gui/profiles.cs");
 exec("./gui/gm_window.gui");

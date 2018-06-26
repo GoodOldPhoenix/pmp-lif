@@ -100,6 +100,13 @@ function pGMTPToPlayer()
 	export("$pref::*", "data/prefs.cs", False);		
 }
 
+function pGMTPPlayerToME()
+{
+	%player = pGMGuiTPPlayerName.GetValue();
+
+
+}
+
 function pGMSpawnAnimal()
 {
 	%animal = pGMGuiAnimal.getSelected();
@@ -135,6 +142,104 @@ function pGMWeather()
 	$pref::PMP::Weather = %weather;
 	
 	export("$pref::*", "data/prefs.cs", False);
+}
+
+// Solo Starter Pack (No Coin or Monument Items)
+function pGMSoloStarterKit() {
+    
+    // Creates a message in chat box telling you you've spawned a starter kit
+    // Will prove handy when I implement a key bind for this later :)
+    onChatMessage("<spush><color:FF4500>Spawning Solo Starter Kit<spop>", null, null);
+
+    // This bit you can edit like so:
+    // ADD [ItemID] [Quantity] [Quality]
+    doSlashCommand("/ADD 1029 1 40"); // Cooking Pot
+    doSlashCommand("/ADD 621 1 40"); // Fishing Pole
+    doSlashCommand("/ADD 42 1 40"); // Blacksmith's Hammer
+    doSlashCommand("/ADD 44 1 40"); // Mallet
+    doSlashCommand("/ADD 46 1 40"); // Hatchet
+    doSlashCommand("/ADD 290 1 40"); // Knife
+    doSlashCommand("/ADD 48 1 40"); // Pickaxe (Iron One, not Steel)
+    doSlashCommand("/ADD 51 1 40"); // Saw
+    doSlashCommand("/ADD 40 1 40"); // Shovel
+    doSlashCommand("/ADD 33 1 40"); // Sickle
+    doSlashCommand("/ADD 464 1 40"); // Crucible and Tongs
+
+    // Creates a Trader Cart Direcly in front of GM
+    doSlashCommand("/ADDOBJ 169");
+}
+
+// Saves you adding the coin and monument items too!
+function pGMGuildStarterKit() {
+    
+    onChatMessage("<spush><color:FF4500>Spawning Guild Starter Kit<spop>", null, null);
+
+    // COIN HAS BEEN TEMPERARILY REMOVED.
+    // Coins quality is irrelevant so no need to declare it here!
+    //doSlashCommand("/ADD 1059 1000"); // 1000 Copper Coin
+    //doSlashCommand("/ADD 1060 2"); // You guessed it, 2 Silver Coin
+
+    // Now for the monument things, unsure if quality has an effect so will just set to 100?
+    doSlashCommand("/ADD 269 5 100"); // Shaped Rock
+    doSlashCommand("/ADD 324 20 100"); // Hardwood Billet
+    doSlashCommand("/ADD 342 100 100"); // Bones
+    doSlashCommand("/ADD 788 40 100"); // Preparation (Adrenaline(Doesn't Matter which one, I just picked the first on the list))
+}
+
+// I remembered your "One "Free" move" thing so did one just for the monuments too
+function pGMMonumentKit() {
+
+    onChatMessage("<spush><color:FF4500>Spawning Monument Kit<spop>", null, null);
+
+    doSlashCommand("/ADD 269 5 100");
+    doSlashCommand("/ADD 324 20 100");
+    doSlashCommand("/ADD 342 100 100");
+    doSlashCommand("/ADD 788 40 100");
+}
+
+// Need to declare a function to create a keybind...
+function pUnstuckStuck() {
+
+    doSlashCommand("/STUCK");
+}
+
+// We need to actually create a new function specifically for the keybind
+// or stopping it spawning two things is going to be a very hard task...
+
+function pSoloKeyBind(%val) {
+    
+    if (%val) // The key was just depressed
+    pGMSoloStarterKit();
+
+    if (!%val) // The key was released
+    cancel($RepeatEventId);
+}
+
+function pGuildKeyBind(%val) {
+
+    if (%val) // The key was just depressed
+    pGMGuildStarterKit();
+
+    if (!%val) // The key was released
+    cancel($RepeatEventId);
+}
+
+function pMonumentKeyBind(%val) {
+
+    if (%val) // The key was just depressed
+    pGMMonumentKit();
+
+    if (!%val) // The key was released
+    cancel($RepeatEventId);
+}
+
+function pUnstuckKeyBind(%val) {
+
+    if (%val) // The key was just depressed
+    pUnstuckStuck();
+
+    if (!%val) // The key was released
+    cancel($RepeatEventId);
 }
 
 function pGMAddConstructionItems()
@@ -937,4 +1042,8 @@ function pSpawnWorkbenchItems()
 }
 // Well we finally got to the end of that list of functions!
 // Phoenix is happy!
-// Now should I do a list for Items..? * insert troll face here *
+// Setting Keybinds so you don't have to remember some arbitrary console command -__-
+moveMap.bind(keyboard, "F5", pSoloKeyBind); // F5, Spawns Solo Starter Kit
+moveMap.bind(keyboard, "F6", pGuildKeyBind); // F6, Spawns Guild Starter Kit
+moveMap.bind(keyboard, "ctrl m", pMonumentKeyBind); // CTRL + M, Spawns Monument Kit (Need to null possiblity of pressing CTRL F6 triggering the above keybind)
+moveMap.bind(keyboard, "F11", pUnstuckKeyBind); // F11, Keybind for /STUCK

@@ -77,7 +77,7 @@ if(!isObject(pGMGuiWindow))
 
             new GuiPopUpMenuCtrlEx(pGMGuiAnimal) 
             {
-                maxPopupHeight = "200";
+                maxPopupHeight = "1000";
                 sbUsesNAColor = "0";
                 reverseTextList = "0";
                 bitmapBounds = "16 16";
@@ -95,13 +95,13 @@ if(!isObject(pGMGuiWindow))
                 minExtent = "8 2";
                 horizSizing = "right";
                 vertSizing = "bottom";
-                profile = "pGuiDropdownCenterProfile";
+                profile = "pGuiDropdownProfile";
                 visible = "1";
                 active = "1";
                 tooltipProfile = "GuiToolTipProfile";
                 hovertime = "1000";
                 isContainer = "1";
-                canSave = "1";
+                canSave = "0";
                 canSaveDynamicFields = "0";
             };
 
@@ -544,12 +544,12 @@ if(!isObject(pGMGuiWindow))
 
             new GuiPopUpMenuCtrlEx(pGMGuiConstruct) 
             {
-                maxPopupHeight = "200";
+                maxPopupHeight = "10000";
                 sbUsesNAColor = "0";
                 reverseTextList = "0";
                 bitmapBounds = "16 16";
                 hotTrackCallback = "0";
-                text = "Select Build";
+                text = "Select Building";
                 maxLength = "1024";
                 margin = "0 0 0 0";
                 padding = "0 0 0 0";
@@ -562,13 +562,13 @@ if(!isObject(pGMGuiWindow))
                 minExtent = "8 2";
                 horizSizing = "right";
                 vertSizing = "bottom";
-                profile = "pGuiDropdownCenterProfile";
+                profile = "pGuiDropdownProfile";
                 visible = "1";
                 active = "1";
                 tooltipProfile = "GuiToolTipProfile";
                 hovertime = "1000";
                 isContainer = "1";
-                canSave = "1";
+                canSave = "0";
                 canSaveDynamicFields = "0";
             };
 
